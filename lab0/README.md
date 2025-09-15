@@ -11,9 +11,9 @@
 
 Для 4 лабы пока нет четкой идеи...
 
-###Книга, которую я выбрала для изучения:
+### Книга, которую я выбрала для изучения:
 [The Joy of Clojure, 2nd Edition](https://github.com/em7/clojure-ebook-1/blob/master/The%20Joy%20of%20Clojure%2C%202nd%20Edition.pdf)
 
-###Также понравившиеся сайты:
-https://alexott.net/ru/clojure/clojure-intro/index.html
-https://planet.clojure.in/
+### Также понравившиеся сайты:
+- https://alexott.net/ru/clojure/clojure-intro/index.html
+- https://planet.clojure.in/
