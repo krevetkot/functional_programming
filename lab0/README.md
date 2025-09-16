@@ -10,6 +10,17 @@
 ### Книга, которую я выбрала для изучения:
 [The Joy of Clojure, 2nd Edition](https://github.com/em7/clojure-ebook-1/blob/master/The%20Joy%20of%20Clojure%2C%202nd%20Edition.pdf)
 
+## Выбранные инструменты:
+| Компонент                        | Инструмент                         |
+|----------------------------------|------------------------------------|
+| **Компилятор/интерпретатор**     | Clojure CLI (clojure)              |
+| **Система сборки**               | Leiningen                          |
+| **Стиль кодирования**            | Clojure Style Guide                |
+| **Система автоматического форматирования** | cljfmt                    |
+| **Инструменты тестирования**     | clojure.test, Midje                |
+| **Среда разработки**             | VSCode |
+
+
 ### Материалы:
 - https://alexott.net/ru/clojure/clojure-intro/index.html
 - https://planet.clojure.in/
