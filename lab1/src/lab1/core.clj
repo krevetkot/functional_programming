@@ -2,7 +2,17 @@
   (:gen-class))
 
 
-(def numbers-str ["37107287533902102798797998220837590246510135740250"])
+;;  (def numbers-str ["37107287533902102798797998220837590246510135740250"])
+
+(defn random-digit []
+  (str (rand-int 10))) ; генерирует одну цифру - символ
+
+(defn random-number [length]
+  (apply str (repeatedly length random-digit))) ; строка из length цифр
+
+(def numbers-str
+  (repeatedly 100 #(random-number 50))) ; 100 строк по 50 цифр
+
 
 ; хвостовая рекурсия
 ; в данном случае рекурсивно вызывается функция sum-column
@@ -26,6 +36,16 @@
       (apply str (take 10 result)))))
 
 
+; использование отображения (map);
+(defn sum-digits-with-map [nums]
+  (let [big-numbers (map biginteger nums)
+        total-sum (reduce + big-numbers)
+        sum-str (str total-sum)]
+    (subs sum-str 0 11)))
+
+
+
 
 (defn -main [& args]
-  (println (sum-digits-tail-rec numbers-str)))
+  (println (sum-digits-tail-rec numbers-str))
+  (println (sum-digits-with-map numbers-str)))
