@@ -17,8 +17,9 @@
 
 (defn -main []
   (println "Euler 13")
-  ;; (println "sum-digits-tail-rec:" (euler13/sum-digits-tail-rec numbers-str))
-  ;; (println "sum-digits-with-map:" (euler13/sum-digits-with-map numbers-str))
+  (println "sum-digits-tail-rec:" (euler13/sum-digits-tail-rec numbers-str))
+  (println "sum-digits-rec:" (euler13/sum-digits-rec numbers-str))
+  (println "sum-digits-with-map:" (euler13/sum-digits-with-map numbers-str))
 
   (println "\nEuler 17")
   (println "count-letters-tail-rec:" (euler17/count-letters-tail-rec 1 1000))

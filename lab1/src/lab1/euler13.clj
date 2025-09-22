@@ -1,8 +1,7 @@
 (ns lab1.euler13
   (:gen-class))
 
-; хвостовая рекурсия
-; в данном случае рекурсивно вызывается функция sum-column
+; монолитная реализация с использованием хвостовой рекурсии
 (defn sum-digits-tail-rec [nums]
   (letfn [(sum-column [cols carry result] ; функция принимает массив цифр текущего разряда из всех чисел, перенос и накопленный результат в обратном порядке
             (if (every? empty? cols) ; если цифры кончились
@@ -21,6 +20,24 @@
     (let [num-chars (map #(reverse (seq %)) nums) ; seq превращает строки в массивы с цифрами в обратном порыдке (чтобы складывать с младшего разряда)
           result (sum-column num-chars 0 '())] 
       (apply str (take 10 result)))))
+
+
+; монолитная реализация с использованием обычной рекурсии
+(defn sum-digits-rec [nums]
+  (letfn [(sum-column [cols carry]
+            (if (every? empty? cols)
+              (if (zero? carry) [] [carry])
+              (let [current-digits (map #(if (empty? %) 0 (Character/digit (first %) 10)) cols)
+                    col-sum (+ carry (reduce + current-digits))
+                    digit (mod col-sum 10)
+                    new-carry (quot col-sum 10)
+                    next-cols (map rest cols)]
+                (cons digit (sum-column next-cols new-carry)))))]
+    
+    (let [nums-list (map #(reverse (seq %)) nums)
+          result (sum-column nums-list 0)]
+      (apply str (take 10 (reverse result))))))
+; в отличие от хвостовой рекурсии, в конце нам нужен реверс результата, так как мы накапливали его "слева-направо"
 
 
 ; использование отображения (map)
