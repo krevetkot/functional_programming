@@ -101,9 +101,40 @@
        (reduce +)))                 
 
 
+; ============== Использование отображения (map) ==============
+
 (defn count-letters-with-map [start end]
   (apply + (map (comp count
                       #(clojure.string/replace % #"[ ]" "") number-to-words)
                 (range start (inc end)))))
 ; пошагово: number-to-words к элементу, заменяем пробелы, считаем символы
 ; все это собирается в композицию и применяется к каждому элементу. потом складывается
+
+
+
+
+; ============== Работа с циклом ==============
+
+(defn count-letters-in-loop [start end]
+  (loop [n start
+         acc 0]
+    (if (> n end)
+      acc
+      (let [words (number-to-words n)
+            clean (str/replace words #"[ ]" "")
+            cnt   (count clean)]
+        (recur (inc n) (+ acc cnt))))))
+
+
+
+; ============== Работа с бесконечными списками ==============
+
+(defn count-letters-lazy [start end]
+  (->> (iterate inc start)                 
+       (map (fn [n]
+              (-> (number-to-words n)
+                  (str/replace #" " "")
+                  count)))
+       (take end)                       
+       (reduce +)))
+
