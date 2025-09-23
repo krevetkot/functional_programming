@@ -22,3 +22,7 @@ lab1/doc/intro.md
 lab1/.clj-kondo/
 lab1/.cljfmt.edn
 lab1/.github/workflows/ci.yml
+lab1/.cljfmt.edn
+lab1/.clj-kondo/config.edn
+lab1/deps.edn
+lab1/.cljfmt.edn
