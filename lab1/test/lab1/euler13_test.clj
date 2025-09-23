@@ -14,7 +14,7 @@
   (testing "Транспонирование"
     (let [result (rows-to-columns light-test-numbers-13)]
       (is (= [[\1 \4 \7] [\2 \5 \8] [\3 \6 \9] [\1 \4 \7]
-              [\2 \5 \8] [\3 \6 \9] [\1 \4 \7] [\2 \5 \8] 
+              [\2 \5 \8] [\3 \6 \9] [\1 \4 \7] [\2 \5 \8]
               [\3 \6 \9] [\1 \4 \7]] result)))))
 
 (deftest sum-digits-tail-rec-test
