@@ -14,8 +14,11 @@ pom.xml.asc
 .hgignore
 .hg/
 /lab1/CHANGELOG.md
-lab1/.calva/output-window/output.calva-repl
-lab1/.cpcache/9D08550A2A92087A9FB5112123F53FD3.basis
-lab1/.cpcache/9D08550A2A92087A9FB5112123F53FD3.cp
+lab1/.calva/
+lab1/.cpcache/
+lab1/.cpcache/
 lab1/doc/intro.md
 .lsp/.cache/db.transit.json
+lab1/.clj-kondo/
+lab1/.cljfmt.edn
+lab1/.github/workflows/ci.yml
