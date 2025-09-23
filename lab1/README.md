@@ -1,44 +1,56 @@
-# lab1
+# Лабораторная работа №1
+---
+**Выполнила:** Слонимская Ксения  Григорьевна  
+**Группа:** Р3331  
+**Преподаватель:** Пенской Александр Владимирович  
+**Язык:** Clojure
 
-FIXME: description
+---
 
-## Installation
+### Задача 13
+**Вычислить первые 10 цифр суммы ста 50-значных чисел**
 
-Download from https://example.com/FIXME.
+---
 
-## Usage
+## Ключевые элементы реализации
 
-FIXME: explanation
+Мной были разработаны следующие варианты решений:
+- sum-digits-tail-rec - монолитная реализация с хвостовой рекурсией
+- sum-digits-rec - монолитная реализация с обычной рекурсией
+- sum-digits-modular - модульная реализация
+- sum-digits-with-map - реализация с акцентом на map
+- sum-digits-in-loop - реализация с циклом loop/recur
+- sum-digits-lazy - реализация с бесконечными последовательностями и ленивыми вычислениями
 
-    $ java -jar lab1-0.1.0-standalone.jar [args]
+Все реализации придерживаются одного алгоритма: 
+- генерация чисел (происходит отдельно, чтобы во все функции передавать один набор данных)
+- реверс чисел (от младших разрядов к старшим)
+- суммирование цифр по колонкам (разрядам)
+- добавление итогового переноса
+- реверс, если он нужен для конкретной реализации (это зависит от наличия рекурсии и ее типа)
+- взятие первых 10 цифр результата
 
-## Options
 
-FIXME: listing of options this app accepts.
+### Задача 17  
+**Подсчитать общее количество букв в числах от 1 до 1000 при записи на английском языке**
 
-## Examples
+## Ключевые элементы реализации
 
-...
+Мной были разработаны следующие варианты решений:
+- count-letters-tail-rec - монолитная реализация с хвостовой рекурсией
+- count-letters-rec - монолитная реализация с обычной рекурсией
+- count-letters-modular - модульная реализация
+- count-letters-with-map - реализация с акцентом на map
+- count-letters-in-loop - реализация с циклом loop/recur
+- count-letters-lazy - реализация с бесконечными последовательностями и ленивыми вычислениями
 
-### Bugs
+Все реализации придерживаются одного алгоритма: 
+- генерация ряда от 1 до 1000 (циклом, с помощью iterate Или range)
+- каждое число переводится в строковое представление
+- удаление пробелов
+- подсчет букв и сложение результатов (с помощью цикла, reduce или apply)
 
-...
+## Выводы
 
-### Any Other Sections
-### That You Think
-### Might be Useful
-
-## License
-
-Copyright © 2025 FIXME
-
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-https://www.eclipse.org/legal/epl-2.0.
-
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
+В данной лабораторной работе я познакомилась с синтаксисом ящыка Clojure и его базовыми возможностями. Я изучила функции, объявления, свертку, отображение, узнала о работе со списками и рекурсией (хвостовой и обычной) в этом языке. 
+Мной также были реализованы решения на языке Python, которыми я пользовалась для сравнения, и тесты.
