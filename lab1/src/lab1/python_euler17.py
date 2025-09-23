@@ -1,6 +1,3 @@
-import argparse
-
-
 def number_to_words(n):
     units = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
              "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
