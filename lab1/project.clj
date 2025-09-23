@@ -9,4 +9,7 @@
   :plugins [[lein-cljfmt "0.8.2"]]
   :profiles {:uberjar {:aot :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}
-             :dev {:dependencies [[midje "1.10.9"]]}})
+             :dev {:dependencies [[midje "1.10.9"]]}}
+  :test-selectors {:default (complement :integration)
+                    :integration :integration
+                    :all (constantly true)})
