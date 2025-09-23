@@ -28,7 +28,7 @@ jobs:
         path: |
           ~/.m2
           ~/.lein
-          ./lab1/target    # ← Кэшируем также target директорию
+          ./lab1/target
         key: ${{ runner.os }}-lein-${{ hashFiles('lab1/project.clj') }}
         restore-keys: |
           ${{ runner.os }}-lein-
