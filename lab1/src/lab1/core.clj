@@ -20,4 +20,5 @@
   (println "\nEuler 17")
   (println "count-letters-tail-rec:" (euler17/count-letters-tail-rec 1 1000))
   (println "count-letters-rec:" (euler17/count-letters-rec 1 1000))
+  (println "count-letters-modular:" (euler17/count-letters-modular 1 1000))
   (println "count-letters-with-map:" (euler17/count-letters-with-map 1 1000)))
