@@ -8,7 +8,6 @@
 
 (def hard-test-numbers-13 (euler13/create-random-number-str))
 
-
 (deftest rows-to-columns-test
   (testing "Транспонирование"
     (let [result (rows-to-columns light-test-numbers-13)]
@@ -33,7 +32,6 @@
   (testing "Реализация с map на простых числах"
     (let [result (sum-digits-with-map light-test-numbers-13)]
       (is (= "1369369369" result)))))
-
 
 (deftest consistency-test
   (testing "Все реализации дают одинаковый результат (большие числа)"

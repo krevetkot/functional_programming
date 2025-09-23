@@ -3,9 +3,6 @@
   (:require [lab1.euler13 :as euler13]
             [lab1.euler17 :as euler17]))
 
-
-
-
 (def number-str (euler13/create-random-number-str))
 
 (defn -main []

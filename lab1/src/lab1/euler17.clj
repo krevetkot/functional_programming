@@ -39,33 +39,30 @@
                 (recur (inc n) (+ total letter-count)))))]
     (count-iter start 0)))
 
-
 ; монолитная реализация с использованием обычной рекурсии
 (defn count-letters-rec [n end]
   (letfn [(number-to-words [n]
-                           (cond
-                             (= n 1000) "one thousand"
-                             (>= n 100) (let [hundreds (quot n 100)
-                                              remainder (mod n 100)
-                                              hundred-str (str (number-words hundreds) " hundred")]
-                                          (if (zero? remainder)
-                                            hundred-str
-                                            (str hundred-str " and " (number-to-words remainder))))
-                             (>= n 20) (let [tens (* (quot n 10) 10)
-                                             units (mod n 10)
-                                             tens-str (number-words tens)]
-                                         (if (zero? units)
-                                           tens-str
-                                           (str tens-str " " (number-words units))))
-                             :else (number-words n)))]
-  (if (> n end)
-    0
-    (let [words (number-to-words n)
-          clean-words (clojure.string/replace words #"[ ]" "")
-          letter-count (count clean-words)]
-      (+ letter-count (count-letters-rec (inc n) end))))))
-
-
+            (cond
+              (= n 1000) "one thousand"
+              (>= n 100) (let [hundreds (quot n 100)
+                               remainder (mod n 100)
+                               hundred-str (str (number-words hundreds) " hundred")]
+                           (if (zero? remainder)
+                             hundred-str
+                             (str hundred-str " and " (number-to-words remainder))))
+              (>= n 20) (let [tens (* (quot n 10) 10)
+                              units (mod n 10)
+                              tens-str (number-words tens)]
+                          (if (zero? units)
+                            tens-str
+                            (str tens-str " " (number-words units))))
+              :else (number-words n)))]
+    (if (> n end)
+      0
+      (let [words (number-to-words n)
+            clean-words (clojure.string/replace words #"[ ]" "")
+            letter-count (count clean-words)]
+        (+ letter-count (count-letters-rec (inc n) end))))))
 
 ; ============== Модульная реализация ==============
 
@@ -96,10 +93,9 @@
       count))
 
 (defn count-letters-modular [start end]
-  (->> (range start (inc end))       
-       (map count-letters-in-number) 
-       (reduce +)))                 
-
+  (->> (range start (inc end))
+       (map count-letters-in-number)
+       (reduce +)))
 
 ; ============== Использование отображения (map) ==============
 
@@ -109,9 +105,6 @@
                 (range start (inc end)))))
 ; пошагово: number-to-words к элементу, заменяем пробелы, считаем символы
 ; все это собирается в композицию и применяется к каждому элементу. потом складывается
-
-
-
 
 ; ============== Работа с циклом ==============
 
@@ -125,16 +118,14 @@
             cnt   (count clean)]
         (recur (inc n) (+ acc cnt))))))
 
-
-
 ; ============== Работа с бесконечными списками ==============
 
 (defn count-letters-lazy [start end]
-  (->> (iterate inc start)                 
+  (->> (iterate inc start)
        (map (fn [n]
               (-> (number-to-words n)
                   (str/replace #" " "")
                   count)))
-       (take end)                       
+       (take end)
        (reduce +)))
 
