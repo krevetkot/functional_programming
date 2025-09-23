@@ -1,0 +1,9 @@
+{:output {:pattern "::{{level}} file={{filename}},line={{row}},col={{col}}::{{message}}"
+          :format :tap}
+ :linters {:unused-binding {:level :warning}
+           :unused-namespace {:level :warning}
+           :unused-private-var {:level :warning}
+           :redundant-call {:level :warning}
+           :redundant-do {:level :warning}
+           :redundant-let {:level :warning}
+           :missing-docstring {:level :off}}}
