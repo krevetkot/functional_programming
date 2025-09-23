@@ -1,7 +1,5 @@
 (ns lab1.euler13
-  (:gen-class)
-  (:require
-   [clojure.string :as str]))
+  (:gen-class))
 
 ; ============== Монолитные реализации ==============
 
@@ -25,9 +23,9 @@
     (let [num-chars (map #(reverse (seq %)) nums)
     ; seq превращает строки в массивы с цифрами в обратном порядке (чтобы складывать с младшего разряда)
           result (sum-column num-chars 0 '())
-          str-result (str/join str (take 10 result))]
+          str-result (apply str (take 10 result))]
       (if (= (count str-result) 11)
-        (str/join str (take 10 str-result))
+        (apply str (take 10 str-result))
         str-result))))
 
 ; монолитная реализация с использованием обычной рекурсии
@@ -44,9 +42,9 @@
 
     (let [nums-list (map #(reverse (seq %)) nums)
           result (sum-column nums-list 0)
-          str-result (str/join str (take 10 (reverse result)))]
+          str-result (apply str (take 10 (reverse result)))]
       (if (= (count str-result) 11)
-        (str/join str (take 10 str-result))
+        (apply str (take 10 str-result))
         str-result))))
 ; в отличие от хвостовой рекурсии, в конце нам нужен реверс результата, так как мы накапливали его "слева-направо"
 
@@ -56,7 +54,7 @@
   (str (rand-int 10))) ; генерирует одну цифру - символ
 
 (defn random-number [length]
-  (str/join str (repeatedly length random-digit))) ; строка из length цифр
+  (apply str (repeatedly length random-digit))) ; строка из length цифр
 
 (defn create-random-number-str []
   (doall (repeatedly 100 #(random-number 50)))) ; 100 строк по 50 цифр
@@ -65,7 +63,7 @@
   (map #(reverse (seq %)) number-strs))
 
 (defn rows-to-columns [number-rows]
-  (str/join (map vector number-rows)))
+  (apply map vector number-rows))
 
 (defn filter-empty-columns [columns]
   (filter (comp not empty?) columns))
@@ -88,9 +86,9 @@
         (cons final-carry final-result)))))
 
 (defn digits-to-string [digits]
-  (let [str-result (str/join str (take 10 digits))]
+  (let [str-result (apply str (take 10 digits))]
     (if (= (count str-result) 11)
-      (str/join str (take 10 str-result))
+      (apply str (take 10 str-result))
       str-result)))
 
 (defn take-first-n-digits [n digits]
@@ -121,7 +119,7 @@
         max-len (apply max (map count num-seqs))]
     (loop [col-index 0, carry 0, result []]
       (if (and (>= col-index max-len) (zero? carry))
-        (str/join str (take 10 result))
+        (apply str (take 10 result))
         (let [col (map #(if (< col-index (count %))
                           (Character/digit (nth % col-index) 10) 0)
                        num-seqs)
@@ -157,4 +155,4 @@
       (->> (sum-cols columns 0)
            reverse
            (take 10)
-           (str/join str)))))
+           (apply str)))))
