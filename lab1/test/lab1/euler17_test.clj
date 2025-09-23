@@ -1,6 +1,8 @@
 (ns lab1.euler17-test
   (:require [clojure.test :refer [deftest is testing]]
-            [lab1.euler17 :refer [count-letters-in-loop count-letters-in-number count-letters-modular count-letters-rec count-letters-tail-rec count-letters-with-map number-to-words]]))
+            [lab1.euler17 :refer [count-letters-in-loop count-letters-in-number
+                                  count-letters-modular count-letters-rec
+                                  count-letters-tail-rec count-letters-with-map number-to-words]]))
 
 (def fixed-range
   [1 1000])

@@ -1,17 +1,21 @@
 (ns lab1.euler13-test
-  (:require [clojure.test :refer :all]
-            [lab1.euler13 :refer :all]))
+  (:require [clojure.test :refer [deftest is testing]]
+            [lab1.euler13 :refer [rows-to-columns sum-digits-modular
+                                  sum-digits-rec sum-digits-tail-rec
+                                  sum-digits-with-map create-random-number-str]]))
 
 ;; Фиксированные тестовые данные для воспроизводимости
 (def light-test-numbers-13
   ["1231231231" "4564564564" "7897897897"]) ; Сумма = 13693693692 -> 1369369369
 
-(def hard-test-numbers-13 (euler13/create-random-number-str))
+(def hard-test-numbers-13 (create-random-number-str))
 
 (deftest rows-to-columns-test
   (testing "Транспонирование"
     (let [result (rows-to-columns light-test-numbers-13)]
-      (is (= [["1" "4" "7"] ["2" "5" "8"] ["3" "6" "9"] ["1" "4" "7"] ["2" "5" "8"] ["3" "6" "9"] ["1" "4" "7"]] result)))))
+      (is (= [["1" "4" "7"] ["2" "5" "8"] ["3" "6" "9"]
+              ["1" "4" "7"] ["2" "5" "8"] ["3" "6" "9"]
+              ["1" "4" "7"]] result)))))
 
 (deftest sum-digits-tail-rec-test
   (testing "Хвостовая рекурсия на простых числах"

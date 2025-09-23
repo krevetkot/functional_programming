@@ -34,7 +34,7 @@
             (if (> n end)
               total
               (let [words (number-to-words n) ; каждому числу сосставляем слова
-                    clean-words (clojure.string/replace words #"[ -]" "") ; удаляем пробелы 
+                    clean-words (clojure.string/replace words #"[ ]" "")
                     letter-count (count clean-words)] ; считаем буквы
                 (recur (inc n) (+ total letter-count)))))]
     (count-iter start 0)))
@@ -128,4 +128,3 @@
                   count)))
        (take end)
        (reduce +)))
-
