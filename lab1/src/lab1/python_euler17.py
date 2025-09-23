@@ -31,7 +31,7 @@ def count_letters_python(start, end):
 
 def main():
     result = count_letters_python(1, 1000)
-    print(f"Euler 17: {result}")
+    print(f"{result}")
     return result
 
 if __name__ == "__main__":

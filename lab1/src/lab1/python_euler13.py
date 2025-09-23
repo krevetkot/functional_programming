@@ -8,7 +8,7 @@ def sum_digits_python(numbers):
 
 def main(numbers):
     result = sum_digits_python(numbers)
-    print(f"Euler 13: {result}")
+    print(f"{result}")
     return result
 
 if __name__ == "__main__":
