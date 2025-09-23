@@ -20,8 +20,11 @@
                 (recur next-cols new-carry (cons digit result)))))]
     
     (let [num-chars (map #(reverse (seq %)) nums) ; seq превращает строки в массивы с цифрами в обратном порядке (чтобы складывать с младшего разряда)
-          result (sum-column num-chars 0 '())] 
-      (apply str (take 10 result)))))
+          result (sum-column num-chars 0 '())
+          str-result (apply str (take 10 result))] 
+      (if (= (count str-result) 11) 
+        (apply str(take 10 str-result))
+        str-result))))
 
 
 ; монолитная реализация с использованием обычной рекурсии
@@ -37,8 +40,11 @@
                 (cons digit (sum-column next-cols new-carry)))))]
     
     (let [nums-list (map #(reverse (seq %)) nums)
-          result (sum-column nums-list 0)]
-      (apply str (take 10 (reverse result))))))
+          result (sum-column nums-list 0)
+          str-result (apply str (take 10 (reverse result)))]
+      (if (= (count str-result) 11) 
+        (apply str(take 10 str-result))
+        str-result))))
 ; в отличие от хвостовой рекурсии, в конце нам нужен реверс результата, так как мы накапливали его "слева-направо"
 
 
@@ -51,7 +57,7 @@
   (apply str (repeatedly length random-digit))) ; строка из length цифр
 
 (defn create-random-number-str []
-  (repeatedly 100 #(random-number 50))) ; 100 строк по 50 цифр
+  (doall (repeatedly 100 #(random-number 50)))) ; 100 строк по 50 цифр
 
 (defn reverse-number-strs [number-strs]
   (map #(reverse (seq %)) number-strs)) 
@@ -79,7 +85,10 @@
         (cons final-carry final-result)))))
 
 (defn digits-to-string [digits]
-  (apply str digits))
+  (let [str-result (apply str (take 10 digits))]
+  (if (= (count str-result) 11)
+    (apply str (take 10 str-result))
+    str-result)))
 
 (defn take-first-n-digits [n digits]
   (take n digits))
@@ -95,9 +104,58 @@
        (digits-to-string)))
 
 
-; использование отображения (map)
+; ============== Использование отображения (map) ==============
+
 (defn sum-digits-with-map [nums]
   (let [big-numbers (map biginteger nums)
         total-sum (reduce + big-numbers)
         sum-str (str total-sum)]
-    (subs sum-str 0 11)))
+    (subs sum-str 0 10)))
+
+
+; ============== Работа с циклом ==============
+
+(defn sum-digits-in-loop [nums]
+  (let [num-seqs (map #(reverse (seq %)) nums)
+        max-len (apply max (map count num-seqs))]
+    (loop [col-index 0, carry 0, result []]
+      (if (and (>= col-index max-len) (zero? carry))
+        (apply str (take 10 result))
+        (let [col (map #(if (< col-index (count %))
+                          (Character/digit (nth % col-index) 10) 0)
+                       num-seqs)
+              total (+ carry (reduce + col))
+              digit (mod total 10)
+              new-carry (quot total 10)]
+          (recur (inc col-index) new-carry (cons digit result)))))))
+
+
+
+; ============== Работа с бесконечными списками ==============
+
+(defn sum-digits-lazy [nums]
+  (let [numbers (take 100 nums)                      
+        digit-vecs (mapv (fn [s]
+                           (vec (map #(Character/digit % 10) (reverse (seq s)))))
+                         numbers)
+        max-len 50
+        columns (for [i (range max-len)]
+                  (mapv #(if (< i (count %)) (% i) 0) digit-vecs))]
+
+    (letfn [(sum-cols [cols carry]
+              (lazy-seq
+               (if (seq cols)
+                 (let [col    (first cols)
+                       total  (+ carry (reduce + col))
+                       digit  (mod total 10)
+                       new-carry (quot total 10)]
+                   (cons digit (sum-cols (rest cols) new-carry)))
+                 ;; колонки кончились
+                 (when (pos? carry)
+                   (let [digit (mod carry 10)
+                         new-carry (quot carry 10)]
+                     (cons digit (sum-cols '() new-carry)))))))]
+      (->> (sum-cols columns 0)
+           reverse
+           (take 10)
+           (apply str)))))

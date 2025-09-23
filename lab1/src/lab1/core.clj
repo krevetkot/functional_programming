@@ -14,6 +14,8 @@
   (println "sum-digits-rec:" (euler13/sum-digits-rec number-str))
   (println "sum-digits-modular:" (euler13/sum-digits-modular number-str))
   (println "sum-digits-with-map:" (euler13/sum-digits-with-map number-str))
+  (println "sum-digits-in-loop:" (euler13/sum-digits-in-loop number-str))
+  (println "sum-digits-lazy:" (euler13/sum-digits-lazy number-str))
 
   (println "\nEuler 17")
   (println "count-letters-tail-rec:" (euler17/count-letters-tail-rec 1 1000))
