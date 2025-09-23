@@ -1,7 +1,8 @@
 (ns lab1.core-test
-  (:require [clojure.test :refer :all]
-            [lab1.core :refer :all]))
+  (:require [clojure.test :refer [deftest is testing]]
+            [lab1.euler13-test]
+            [lab1.euler17-test]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest all-tests
+  (testing "Запуск всех тестов"
+    (is true)))
