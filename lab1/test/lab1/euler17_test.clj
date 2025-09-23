@@ -4,8 +4,8 @@
                                   count-letters-modular count-letters-rec
                                   count-letters-tail-rec count-letters-with-map number-to-words]]))
 
-(def fixed-range
-  [1 1000])
+(def fixed-start 1)
+(def fixed-end 1000)
 
 (deftest number-to-words-test
   (testing "Преобразование чисел в слова"
@@ -32,5 +32,5 @@
   (testing "Все реализации дают одинаковый результат"
     (let [implementations [count-letters-tail-rec count-letters-rec
                            count-letters-modular count-letters-with-map count-letters-in-loop]
-          results (map #(% fixed-range) implementations)]
+          results (map #(% fixed-start fixed-end) implementations)]
       (is (apply = results)))))
