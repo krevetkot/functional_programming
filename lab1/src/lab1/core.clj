@@ -11,7 +11,7 @@
 (defn run-python-script [script-path & args]
   (let [command (into ["python" script-path] args)
         result (apply shell/sh command)]
-    (if (= 0 (:exit result))
+    (if (zero? (:exit result))
       (str/trim (:out result))
       (throw (Exception. (str "Python error: " (:err result)))))))
 
@@ -22,12 +22,11 @@
 (defn run-euler17-python []
   (run-python-script "./src/lab1/python_euler17.py"))
 
-(defn -main []  
-  
-  
+(defn -main []
+
   (println "PYTHON\n")
-  (println (run-euler13-python number-str))
-  (println (run-euler17-python))
+  (println "Euler 13:" (run-euler13-python number-str))
+  (println "Euler 17:" (run-euler17-python))
 
   (println "\nCLOJURE")
   (println "\nEuler 13")
