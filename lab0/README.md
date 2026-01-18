@@ -8,7 +8,7 @@
 Для 4 лабы мы с коллегами планируем делать проект, связанный с созданием парсера (json/csv/другой формат) с веб интерфейсом. Скорее всего, мы усложним и доработаем эту идею, но пока она взята как ориентировочная.
 
 ### Книга, которую я выбрала для изучения:
-[The Joy of Clojure, 2nd Edition](https://github.com/em7/clojure-ebook-1/blob/master/The%20Joy%20of%20Clojure%2C%202nd%20Edition.pdf)
+[The Joy of Clojure](https://theswissbay.ch/pdf/Gentoomen%20Library/Programming/Lisp/Clojure/The%20Joy%20of%20Clojure.pdf)
 
 ## Выбранные инструменты:
 | Компонент                        | Инструмент                         |
